@@ -114,29 +114,7 @@ public class Vehiculo {
         int cantCamioneta = Camioneta.getCantidadCamioneta();
         return   "Automoviles:: " + cantAuto + "\nCamionetas: " + cantCamioneta + "\nCamiones: " + cantCamion;
     }
-    public static String paisMasVendedor() {
 
-        Map<String, Integer> paisVehiculos = new HashMap<>();
-
-
-        for (Vehiculo vehiculo : Vehiculo.getTodosLosVehiculos()) {
-            String pais = vehiculo.getFabricante().getPais().getNombre();
-            paisVehiculos.put(pais, paisVehiculos.getOrDefault(pais, 0) + 1);
-        }
-
-
-        String paisMasVendido = null;
-        int maxCantidad = 0;
-
-        for (Map.Entry<String, Integer> entry : paisVehiculos.entrySet()) {
-            if (entry.getValue() > maxCantidad) {
-                paisMasVendido = entry.getKey();
-                maxCantidad = entry.getValue();
-            }
-        }
-
-        return paisMasVendido;
-    }
     public static Fabricante fabricaMayorVentas() {
         Map<Fabricante, Integer> fabricanteVentas = new HashMap<>();
 
