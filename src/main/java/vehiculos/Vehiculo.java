@@ -115,16 +115,16 @@ public class Vehiculo {
         return   "Automoviles:: " + cantAuto + "\nCamionetas: " + cantCamioneta + "\nCamiones: " + cantCamion;
     }
     public static String paisMasVendedor() {
-        // Mapa para contar la cantidad de vehículos por país
+
         Map<String, Integer> paisVehiculos = new HashMap<>();
 
-        // Recorremos todos los vehículos registrados. Asumimos que estos vehículos están en una colección estática.
+
         for (Vehiculo vehiculo : Vehiculo.getTodosLosVehiculos()) {
             String pais = vehiculo.getFabricante().getPais().getNombre();
             paisVehiculos.put(pais, paisVehiculos.getOrDefault(pais, 0) + 1);
         }
 
-        // Encontramos el país con más vehículos
+
         String paisMasVendido = null;
         int maxCantidad = 0;
 
