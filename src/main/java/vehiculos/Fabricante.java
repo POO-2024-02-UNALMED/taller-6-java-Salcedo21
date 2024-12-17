@@ -32,7 +32,7 @@ public class Fabricante {
     public static Fabricante fabricaMayorVentas() {
         List<Vehiculo> vehiculos = Vehiculo.getTodosLosVehiculos();
         Map<Fabricante, Integer> ventasPorFabricante = new HashMap<>();
-        
+
         for (Vehiculo vehiculo : vehiculos) {
             Fabricante fabricante = vehiculo.getFabricante();
             ventasPorFabricante.put(fabricante, ventasPorFabricante.getOrDefault(fabricante, 0) + 1);
