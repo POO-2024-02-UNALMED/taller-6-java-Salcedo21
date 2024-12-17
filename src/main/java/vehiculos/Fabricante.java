@@ -1,6 +1,7 @@
 package vehiculos;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Fabricante {
@@ -28,26 +29,25 @@ public class Fabricante {
         this.pais = pais;
     }
 
-    public static String fabricaMayorVentas() {
-        Map<String, Integer> fabricanteVentas = new HashMap<>();
-
-
-        for (Vehiculo vehiculo : Vehiculo.getTodosLosVehiculos()) {
-            String fabricante = vehiculo.getFabricante().getNombre();
-            fabricanteVentas.put(fabricante, fabricanteVentas.getOrDefault(fabricante, 0) + 1);
+    public static Fabricante fabricaMayorVentas() {
+        List<Vehiculo> vehiculos = Vehiculo.getTodosLosVehiculos();
+        Map<Fabricante, Integer> ventasPorFabricante = new HashMap<>();
+        
+        for (Vehiculo vehiculo : vehiculos) {
+            Fabricante fabricante = vehiculo.getFabricante();
+            ventasPorFabricante.put(fabricante, ventasPorFabricante.getOrDefault(fabricante, 0) + 1);
         }
 
+        Fabricante mayorFabricante = null;
+        int maxVentas = 0;
 
-        String fabricanteMayorVentas = null;
-        int maxCantidad = 0;
-
-        for (Map.Entry<String, Integer> entry : fabricanteVentas.entrySet()) {
-            if (entry.getValue() > maxCantidad) {
-                fabricanteMayorVentas = entry.getKey();
-                maxCantidad = entry.getValue();
+        for (Map.Entry<Fabricante, Integer> entry : ventasPorFabricante.entrySet()) {
+            if (entry.getValue() > maxVentas) {
+                mayorFabricante = entry.getKey();
+                maxVentas = entry.getValue();
             }
         }
 
-        return fabricanteMayorVentas;
+        return mayorFabricante;
     }
 }
